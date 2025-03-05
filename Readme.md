@@ -1,82 +1,81 @@
-<placeholder for readme file>
-# CNN with Attention: Experiments with Curriculum Learning
+<!-- PROJECT SHIELDS
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+-->
 
-## Overview
-This project investigates the impact of curriculum learning on Convolutional Neural Networks (CNNs), CNNs with attention mechanisms, and pure Transformer architectures. Our study explores how structuring the order of training samples influences model convergence, performance, and data efficiency.
+<!-- PROJECT TITLE -->
+<br />
+<div align="center">
+  <h3 align="center">Because Order Counts: Curriculum Learning with Attentions in CNNs</h3>
+  <p align="center">
+Our work investigates whether sequencing training data from simple to complex (curriculum learning) can boost the performance of attention-augmented CNNs compared to traditional CNNs. Our experiments compare a baseline ResNet-20 with multiple attention mechanisms using a challenging subset of CIFAR-100.
+    <br />
+  </p>
+</div>
 
-## Repository Structure
-```
-|-- data/                # Dataset files and preprocessing scripts
-|-- models/              # Model architectures (CNN, CNN+Attention, Transformer)
-|-- experiments/         # Experiment scripts and configurations
-|-- results/             # Experimental results, logs, and model checkpoints
-|-- utils/               # Utility functions for training, evaluation, and visualization
-|-- notebooks/           # Jupyter notebooks for exploratory data analysis
-|-- README.md            # Project documentation
-|-- requirements.txt     # Dependencies
-|-- train.py             # Main training script
-|-- evaluate.py          # Evaluation script
-|-- config.yaml          # Configuration file for hyperparameters
-```
+<div align="center">
+<p>
+    <strong>Contributors:</strong> Luay Muhtaseb1, LihiShalmon
+  </p>
+  
+  <p>
+    <strong> <a href="https://doi.org/10.1109/ICCV.2019.00338">Report</a></strong>
+    <strong> <a href="https://wandb.ai/lihi-shalmon-huji-hebrew-university-of-jerusalem/CNN_With_Curriculum_Learning/sweeps">W&b</a></strong>
+  </p>
+</div> -->
 
-## Installation
-To set up the environment, install the dependencies using:
-```bash
-pip install -r requirements.txt
-```
-Ensure that the necessary dataset is available in the `data/` directory.
+<p align="center">
+  <img src="images/training_progression.png" alt="Training Progression" width="30%">
+</p>
 
-## Dataset
-We use **CIFAR-100 Mammals**, a subset of CIFAR-100 containing five classes and 3,000 images. The dataset is preprocessed using a standard augmentation pipeline:
-- Training: Random cropping + horizontal flipping
-- Testing: Normalization and tensor conversion
+## 📚 Paper Insights
 
-## Curriculum Learning Strategy
-Our curriculum learning approach consists of three components:
-1. **Scoring Function**: Assigns difficulty scores to samples. We use [TBD model] for this.
-2. **Ordering Strategy**: Experiments include curriculum (easy-to-hard), anti-curriculum (hard-to-easy), and random ordering.
-3. **Pacing Function**: Controls the rate of sample introduction per epoch. We implement exponential pacing:
-   \[ g_\theta(i) = N_0 \times \left( \frac{N}{N_0} \right)^{\frac{i}{M}} \]
+- **Curriculum Effectiveness:** Curriculum learning significantly improves test accuracy (up to a 2.55% increase) over anti-curriculum methods.
+- **Attention Mechanisms:** While attention modules like CBAM and MHA offer modest gains, the baseline ResNet-20 without attention still outperforms attention-augmented variants in this limited-data scenario.
+- **Hyperparameter Impact:** Learning rate is identified as the most critical hyperparameter, with strong implications for model performance.
+- **Visual Analysis:** Confusion matrices and saliency maps reveal that curriculum learning helps sharpen class separability, even under challenging conditions.
 
-## Model Architectures
-We experiment with three model architectures:
-1. **CNN (ResNet-50)**: Traditional convolutional model.
-2. **CNN with Attention (CBAM)**: Adds spatial and channel-wise attention to ResNet.
-3. **Vision Transformer (ViT)**: Self-attention-based model for vision tasks.
+For detailed plots, logs, and performance metrics, please explore the Experiments section.
 
-## Training and Evaluation
-Run training using:
-```bash
-python train.py --config config.yaml
-```
-Evaluate trained models with:
-```bash
-python evaluate.py --model <model_path>
-```
+<p align="center">
+  <img src="images/boxplot.png" alt="Boxplot" width="30%">
+</p>
 
-## Hyperparameters
-| Hyperparameter       | Value                  |
-|----------------------|------------------------|
-| Batch Size          | 128                     |
-| Epochs              | 182                     |
-| Learning Rate       | 0.1                     |
-| Scheduler           | Milestones: 91, 136 (gamma=0.1) |
-| Optimizer           | SGD (momentum=0.9)      |
-| Weight Decay        | 0.0001                  |
 
-## Results
-(TBD: Include key findings, performance metrics, and comparisons with prior work.)
+## 🔍 Methodology
 
-## Future Work
-- Extend experiments to larger datasets.
-- Explore additional curriculum designs.
-- Investigate hybrid models integrating CNN feature extractors with attention mechanisms.
+Our approach is divided into three main components:
 
-## Contact
-For questions or contributions, contact:
-- **First Author**: first.author@domain.com
-- **Second Author**: second.author@domain.com
+### 1. Curriculum Learning
+- **Objective:** Improve model convergence and generalization by gradually introducing training complexity.
+- **Process:** 
+  - **Scoring:** Each training sample is assigned a difficulty score using a predefined function.
+  - **Ordering:** Samples are sorted from easiest to hardest, ensuring the model learns fundamental patterns first.
+  - **Pacing:** The number of training samples increases over epochs, allowing the model to progressively tackle more challenging examples.
+- **Benefits:** This structured training helps the model avoid being overwhelmed by complex data early on, especially under limited data conditions.
 
----
-*This README is a work in progress. Some details are placeholders and will be updated as experiments progress.*
+### 2. Attention Augmentation
+- **Objective:** Enhance the model's feature extraction by capturing both local and global dependencies.
+- **Modules Integrated:**
+  - **Self-Attention:** Uses 1×1 convolutions to learn spatial dependencies.
+  - **Multi-Head Self-Attention (MHA):** Leverages multiple heads to capture diverse long-range features.
+  - **Convolutional Block Attention Module (CBAM):** Combines channel and spatial attention to focus on critical features.
+- **Implementation:** These modules are incorporated between the layers of the baseline ResNet-20, balancing added complexity with computational efficiency.
 
+### 3. Rigorous Evaluation
+- **Statistical Analysis:** 
+  - **ANOVA, T-tests, and Tukey’s HSD:** Assess the impact of curriculum learning and attention modules on model performance.
+- **Visualization Tools:**
+  - **Accuracy Trends:** Monitor how performance evolves over training iterations.
+  - **Confusion Matrices:** Visualize model misclassifications and class separation.
+  - **Saliency Maps:** Highlight image regions that most influence the model’s predictions.
+- **Hyperparameter Tuning:** 
+  - **Bayesian Optimization:** Fine-tune critical parameters (e.g., learning rate, pacing function) to ensure robust model performance.
+
+<p align="center">
+  <img src="images/conf_mats.png" alt="Confusion Matrices" width="30%"> <br>
+  <img src="images/new_saliency.png" alt="Saliency Maps" width="30%">
+</p>
