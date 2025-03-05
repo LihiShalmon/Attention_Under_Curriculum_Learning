@@ -1,0 +1,39 @@
+{
+  "project": "CNN_With_Curriculum_Learning",
+  "program": "param_tuning.py",
+  "method": "bayes",
+  "metric": {
+    "name": "test_accuracy",
+    "goal": "maximize"
+  },
+  "parameters": {
+    "learning_rate": {
+      "min": 0.0001,
+      "max": 0.1,
+      "distribution": "uniform"
+    },
+    "momentum": {
+      "min": 0.8,
+      "max": 0.99,
+      "distribution": "uniform"
+    },
+    "weight_decay": {
+      "min": 0.00001,
+      "max": 0.01,
+      "distribution": "uniform"
+    },
+    "lr_decay_rate": {
+      "min": 0.85,
+      "max": 0.99,
+      "distribution": "uniform"
+    },
+    "batch_size": {
+      "values": [32, 64, 128]
+    },
+    "num_epochs": {
+      "min": 10,
+      "max": 100,
+      "distribution": "int_uniform"
+    }
+  }
+}
