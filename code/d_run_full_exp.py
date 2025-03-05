@@ -21,7 +21,6 @@ class IndexedDatasetWrapper(torch.utils.data.Dataset):
     def __init__(self, dataset):
         self.dataset = dataset
         if isinstance(dataset, list):
-            # Extract targets from list of (img, label) tuples
             self.targets = dataset
         elif hasattr(dataset, 'targets'):
             self.targets = dataset.targets
@@ -397,11 +396,7 @@ class RunExp:
 
 
 if __name__ == "__main__":
-    # vanilla, curriculum , anti
-    # resnet, resnet-spatial, resnet-channel, resnet-cbam
-    ### 12
-    #
-    # # Train with curriculum learning
+    
     curriculum_exp = RunExp(
         dataset="cifar100_subset_16",
         curriculum="curriculum",
@@ -412,77 +407,3 @@ if __name__ == "__main__":
         lr_decay_rate=0.9,
         weight_decay=0.007
     )
-    curriculum_exp.run_experiment()
-    #
-    # # Train without curriculum learning (vanilla training)
-    # vanilla_exp = RunExp(
-    #     dataset="cifar100_subset_16",
-    #     curriculum="vanilla",
-    #     run_name="baseline_resnet20",
-    #     used_model="resnet20",
-    #     num_epochs=100,
-    #     learning_rate=0.085,
-    #     lr_decay_rate=0.9,
-    #     weight_decay=0.007
-    # )
-    # vanilla_exp.run_experiment()
-    #
-    #
-    # # Train Resnet with self attention - vanilla
-    # resnet_selfattn = RunExp(
-    #     dataset="cifar100_subset_16",
-    #     curriculum="vanilla",
-    #     run_name="selfattn_vanilla_resnet20",
-    #     used_model="resnet20_selfattn",
-    #     num_epochs=100,
-    #     learning_rate=0.01,
-    #     lr_decay_rate=0.9,
-    #     weight_decay=0.007
-    # )
-    # resnet_selfattn.run_experiment()
-    #
-    # # Train Resnet with self attention - curriculum
-    # resnet_selfattn = RunExp(
-    #     dataset="cifar100_subset_16",
-    #     curriculum="curriculum",
-    #     run_name="selfattn_curriculum_resnet20",
-    #     used_model="resnet20_selfattn",
-    #     num_epochs=5,
-    #     learning_rate=0.01,
-    #     lr_decay_rate=0.9,
-    #     weight_decay=0.007
-    # )
-    # resnet_selfattn.run_experiment()
-    #
-    # # Train Resnet with multihead attention - vanilla
-    # resnet_mhattn = RunExp(
-    #     dataset="cifar100_subset_16",
-    #     curriculum="vanilla",
-    #     run_name="resnet20_vanilla_mhattn",
-    #     used_model="resnet20_mhattn",
-    #     num_epochs=2,
-    #     learning_rate=0.01
-    # )
-    # resnet_mhattn.run_experiment()
-    #
-    # # Train Resnet with CBAM - vanilla
-    # resnet_cbam = RunExp(
-    #     dataset="cifar100_subset_16",
-    #     curriculum="vanilla",
-    #     run_name="resnet20_vanilla_cbam",
-    #     used_model="resnet20_cbam",
-    #     num_epochs=2,
-    #     learning_rate=0.01
-    # )
-    # resnet_cbam.run_experiment()
-    #
-    # # Train Resnet with CBAM - curriculum
-    # resnet_cbam = RunExp(
-    #     dataset="cifar100_subset_16",
-    #     curriculum="curriculum",
-    #     run_name="resnet20_curriculum_cbam",
-    #     used_model="resnet20_cbam",
-    #     num_epochs=2,
-    #     learning_rate=0.01
-    # )
-    # resnet_cbam.run_experiment()
