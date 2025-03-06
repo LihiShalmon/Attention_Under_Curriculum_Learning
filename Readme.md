@@ -22,8 +22,8 @@ Our work investigates whether sequencing training data from simple to complex (c
   </p>
   
   <p>
-    <strong> <a href="https://doi.org/10.1109/ICCV.2019.00338">Report</a></strong>
-    <strong> <a href="https://wandb.ai/lihi-shalmon-huji-hebrew-university-of-jerusalem/CNN_With_Curriculum_Learning/sweeps">W&b</a></strong>
+    <strong> <a href="https://github.com/LihiShalmon/Attention_Under_Curriculum_Learning/blob/main/images/experiments_with_carriculum_learning.pdf">🔗Full reports</a></strong>
+    <strong> <a href="https://wandb.ai/lihi-shalmon-huji-hebrew-university-of-jerusalem/CNN_With_Curriculum_Learning/sweeps">🔗 W&b dashboards</a></strong>
   </p>
 </div> -->
 
