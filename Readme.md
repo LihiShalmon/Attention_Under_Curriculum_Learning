@@ -10,26 +10,28 @@
 <br />
 <div align="center">
   <h3 align="center">Because Order Counts: Curriculum Learning with Attentions in CNNs</h3>
-  <p align="center">
-Our work investigates whether sequencing training data from simple to complex (curriculum learning) can boost the performance of attention-augmented CNNs compared to traditional CNNs. Our experiments compare a baseline ResNet-20 with multiple attention mechanisms using a challenging subset of CIFAR-100.
-    <br />
-  </p>
+
 </div>
 
 <div align="center">
-<p>
-    <strong>Contributors:</strong> Luay Muhtaseb1, LihiShalmon
-  </p>
-  
+ 
   <p>
     <strong> <a href="https://github.com/LihiShalmon/Attention_Under_Curriculum_Learning/blob/main/images/experiments_with_carriculum_learning.pdf">🔗Full reports</a></strong>
     <strong> <a href="https://wandb.ai/lihi-shalmon-huji-hebrew-university-of-jerusalem/CNN_With_Curriculum_Learning/sweeps">🔗 W&b dashboards</a></strong>
+    <p>
+    <strong>Contributors:</strong> Luay Muhtaseb1, LihiShalmon
   </p>
-</div> -->
 
-<p align="center">
+Our work investigates whether sequencing training data from simple to complex (curriculum learning) can boost the performance of attention-augmented CNNs compared to traditional CNNs. Our experiments compare a baseline ResNet-20 with multiple attention mechanisms using a challenging subset of CIFAR-100.
+    <br />
+  </p>
+  </p>
+</div> 
+  <p align="center">
   <img src="images/training_progression.png" alt="Training Progression" width="30%">
 </p>
+      <p align="center">
+
 
 ## 📚 Paper Insights
 
